@@ -2188,8 +2188,10 @@ static void jump_handle_keyboard_key(struct sway_keyboard *keyboard,
 			return;
 		}
 	}
-	jump_data->focus = focus;
-	jump_data->keyboard_key_end(jump_data);
+	if (keysym != XKB_KEY_Shift_L && keysym != XKB_KEY_Shift_R) {
+		jump_data->focus = focus;
+		jump_data->keyboard_key_end(jump_data);
+	}
 }
 
 static bool jump_handle_button(struct sway_seat *seat, uint32_t time_msec,
